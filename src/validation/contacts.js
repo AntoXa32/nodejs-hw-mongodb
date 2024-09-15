@@ -18,7 +18,7 @@ export const contactAddSchema = Joi.object({
       'Phone number must be less than or equal to 20 characters long',
     'any.required': 'Phone number is required',
   }),
-  email: Joi.string().email().required().messages({
+  email: Joi.string().email().messages({
     'string.email': 'Email must be a valid email address',
   }),
   isFavourite: Joi.boolean().messages({
