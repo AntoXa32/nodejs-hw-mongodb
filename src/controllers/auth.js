@@ -11,7 +11,7 @@ export const signupController = async (req, res) => {
 };
 
 export const signinController = async (req, res) => {
-  const session = await authServices.signin(req.vody);
+  const session = await authServices.signin(req.body);
 
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
