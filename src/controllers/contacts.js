@@ -80,7 +80,7 @@ export const upsertContactController = async (req, res) => {
   const { isNew, data } = await contactServices.updateContact(
     { _id: contactId, userId },
     req.body,
-    { upsert: true },
+    { upsert: true, new: true },
   );
   const status = isNew ? 201 : 200;
   res.status(status).json({
@@ -104,17 +104,6 @@ export const patchContactController = async (req, res, next) => {
     }
   }
 
-  // const result = await contactServices.updateContact(contactId, {
-  //   ...req.body,
-  //   userId,
-  //   photo: photoUrl,
-  // });
-
-  // if (!result) {
-  //   next(createHttpError(404, 'Contact not found'));
-  //   return;
-  // }
-
   const updatedFields = { ...req.body, photo: photoUrl || undefined };
 
   const result = await contactServices.updateContact(
@@ -124,14 +113,13 @@ export const patchContactController = async (req, res, next) => {
   );
 
   if (!result) {
-    next(createHttpError(404, 'Contact not found'));
-    return;
+    return next(createHttpError(404, 'Contact not found'));
   }
 
   res.json({
     status: 200,
     message: 'Successfully patched a contact!',
-    data: result,
+    data: result.data,
   });
 };
 
