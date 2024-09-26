@@ -42,3 +42,7 @@ export const contactPatchSchema = Joi.object({
   isFavourite: Joi.boolean(),
   contactType: Joi.string().valid(...contactType),
 });
+
+export const requestResetEmailSchema = Joi.object({
+  email: Joi.string().email().required(),
+});

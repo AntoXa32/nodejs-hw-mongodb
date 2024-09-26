@@ -8,8 +8,8 @@ const validateBody = (schema) => {
       });
       next();
     } catch (error) {
-      const validateError = createHttpError(400, error.message);
-      next(validateError);
+      const errors = error.details.map((err) => err.message).join(', ');
+      next(createHttpError(400, `Validation error: ${errors}`));
     }
   };
   return func;
