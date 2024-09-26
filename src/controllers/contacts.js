@@ -8,6 +8,9 @@ import parseSortParams from '../utils/parseSortParams.js';
 import parseContactsFilterParams from '../utils/filters/parseContactsFilterParams.js';
 
 import { sortFields } from '../db/models/Contact.js';
+import { saveFileToUploadDir } from '../utils/saveFileToUploudDir.js';
+import { env } from '../utils/env.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
 export const getAllContactsController = async (req, res) => {
   const { perPage, page } = parsePaginationParams(req.query);
@@ -50,7 +53,19 @@ export const getContactByIdController = async (req, res) => {
 
 export const addContactController = async (req, res) => {
   const { _id: userId } = req.user;
-  const data = await contactServices.createContact({ ...req.body, userId });
+  const photo = req.file;
+
+  let photoUrl = null;
+  if (photo) {
+    photoUrl = await saveFileToUploadDir(photo);
+  }
+
+  const data = await contactServices.createContact({
+    ...req.body,
+    userId,
+    photo: photoUrl,
+  });
+
   res.status(201).json({
     status: 201,
     message: 'Successfully created a contact!',
@@ -75,27 +90,48 @@ export const upsertContactController = async (req, res) => {
   });
 };
 
-export const patchContactController = async (req, res) => {
+export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
   const { _id: userId } = req.user;
+  const photo = req.file;
+
+  let photoUrl = null;
+  if (photo) {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+
+  // const result = await contactServices.updateContact(contactId, {
+  //   ...req.body,
+  //   userId,
+  //   photo: photoUrl,
+  // });
+
+  // if (!result) {
+  //   next(createHttpError(404, 'Contact not found'));
+  //   return;
+  // }
+
+  const updatedFields = { ...req.body, photo: photoUrl || undefined };
 
   const result = await contactServices.updateContact(
     { _id: contactId, userId },
-    req.body,
+    updatedFields,
     { new: true },
   );
 
   if (!result) {
-    throw createHttpError(
-      404,
-      `Contact with id=${contactId} not found or not belongs to this user`,
-    );
+    next(createHttpError(404, 'Contact not found'));
+    return;
   }
 
   res.json({
     status: 200,
     message: 'Successfully patched a contact!',
-    data: result.data,
+    data: result,
   });
 };
 
