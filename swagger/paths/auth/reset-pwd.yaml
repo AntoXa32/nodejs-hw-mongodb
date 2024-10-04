@@ -1,0 +1,24 @@
+tags:
+  - Auth
+summary: Reset user password
+operationId: resetPassword
+description: 'Create a contact with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/user.yaml'
+responses:
+  '200':
+    description: Password successfully reset
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/responses/ResetPasswordSuccessResponse.yaml'
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
