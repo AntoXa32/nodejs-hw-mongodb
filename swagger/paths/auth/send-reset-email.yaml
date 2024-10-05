@@ -2,7 +2,7 @@ tags:
   - Auth
 summary: Send password reset email
 operationId: sendResetEmail
-description: 'Create a contact with payload'
+description: 'Send password reset email'
 security:
   - bearerAuth: []
 requestBody:

@@ -9,6 +9,7 @@ import {
   userSignupSchema,
   userSigninSchema,
   resetPasswordSchema,
+  loginWithGoogleOAuthSchema,
 } from '../validation/user.js';
 import { requestResetEmailSchema } from '../validation/contacts.js';
 
@@ -18,6 +19,17 @@ authRouter.post(
   '/register',
   validateBody(userSignupSchema),
   ctrlWrapper(authControllers.signupController),
+);
+
+authRouter.get(
+  '/get-oauth-url',
+  ctrlWrapper(authControllers.getGoogleOAuthUrlController),
+);
+
+authRouter.post(
+  '/confirm-google-auth',
+  validateBody(loginWithGoogleOAuthSchema),
+  ctrlWrapper(authControllers.loginWithGoogleController),
 );
 
 authRouter.post(
