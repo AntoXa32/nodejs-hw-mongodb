@@ -2,7 +2,7 @@ tags:
   - Auth
 summary: Reset user password
 operationId: resetPassword
-description: 'Create a contact with payload'
+description: 'Reset user password'
 security:
   - bearerAuth: []
 requestBody:

@@ -2,7 +2,7 @@ tags:
   - Auth
 summary: Register a new user
 operationId: registerUser
-description: 'Create a contact with payload'
+description: 'Register a new user'
 security:
   - bearerAuth: []
 requestBody:

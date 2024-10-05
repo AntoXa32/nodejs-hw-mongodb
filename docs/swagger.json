@@ -465,7 +465,7 @@
         ],
         "summary": "Register a new user",
         "operationId": "registerUser",
-        "description": "Create a contact with payload",
+        "description": "Register a new user",
         "security": [
           {
             "bearerAuth": []
@@ -508,7 +508,7 @@
         ],
         "summary": "User login",
         "operationId": "loginUser",
-        "description": "Create a contact with payload",
+        "description": "Login contact ",
         "security": [
           {
             "bearerAuth": []
@@ -551,7 +551,7 @@
         ],
         "summary": "Refresh user tokens",
         "operationId": "refreshTokens",
-        "description": "Create a contact with payload",
+        "description": "Refresh user tokens",
         "security": [
           {
             "bearerAuth": []
@@ -594,7 +594,7 @@
         ],
         "summary": "User logout",
         "operationId": "logoutUser",
-        "description": "Create a contact with payload",
+        "description": "logout contact",
         "security": [
           {
             "bearerAuth": []
@@ -617,7 +617,7 @@
         ],
         "summary": "Send password reset email",
         "operationId": "sendResetEmail",
-        "description": "Create a contact with payload",
+        "description": "Send password reset email",
         "security": [
           {
             "bearerAuth": []
@@ -660,7 +660,7 @@
         ],
         "summary": "Reset user password",
         "operationId": "resetPassword",
-        "description": "Create a contact with payload",
+        "description": "Reset user password",
         "security": [
           {
             "bearerAuth": []

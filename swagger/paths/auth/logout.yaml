@@ -2,7 +2,7 @@ tags:
   - Auth
 summary: User logout
 operationId: logoutUser
-description: 'Create a contact with payload'
+description: 'logout contact'
 security:
   - bearerAuth: []
 responses:
