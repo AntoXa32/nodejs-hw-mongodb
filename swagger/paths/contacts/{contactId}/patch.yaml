@@ -15,7 +15,7 @@ parameters:
 requestBody:
   required: true
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
         properties:
@@ -25,12 +25,20 @@ requestBody:
           phoneNumber:
             type: number
             example: +380000000010
+          email:
+            description: "Contact's email"
+            type: string
+            example: arcantos.s@gmail.com
+          isFavorite:
+            description: "Contact's isFavorite"
+            type: boolean
+            example: true
           contactType:
             type: string
             enum: ['work', 'home', 'personal']
           photo:
             type: string
-            example: 'https://res.cloudinary.com/uqwgdu/image/upload/image_updated.png'
+            format: binary
 responses:
   '200':
     description: 'Contact updated successfully'

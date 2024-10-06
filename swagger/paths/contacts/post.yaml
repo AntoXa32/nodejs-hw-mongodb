@@ -14,7 +14,6 @@ requestBody:
           - name
           - phoneNumber
           - contactType
-          - userId
         properties:
           name:
             description: "Contact's name"
@@ -24,14 +23,18 @@ requestBody:
             description: "Contact's phoneNumber"
             type: number
             example: +380000000009
+          email:
+            description: "Contact's email"
+            type: string
+            example: arcantos.s@gmail.com
+          isFavorite:
+            description: "Contact's isFavorite"
+            type: boolean
+            example: true
           contactType:
             description: 'Whether is contact on duty'
             type: string
             enum: ['work', 'home', 'personal']
-          userId:
-            description: "Contact's user id"
-            type: string
-            example: 65e4decdd286b30065d54af9
           photo:
             description: "Link to contact's photo"
             type: string
