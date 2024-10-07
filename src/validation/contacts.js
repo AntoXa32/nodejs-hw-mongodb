@@ -32,7 +32,7 @@ export const contactAddSchema = Joi.object({
       'any.only': 'Contact type must be one of the allowed values',
       'any.required': 'Contact type is required',
     }),
-  photo: Joi.string().optional().messages({
+  photo: Joi.string().allow(null, '').optional().messages({
     'string.base': 'Photo must be a string (file link)',
   }),
 });
