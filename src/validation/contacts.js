@@ -32,6 +32,9 @@ export const contactAddSchema = Joi.object({
       'any.only': 'Contact type must be one of the allowed values',
       'any.required': 'Contact type is required',
     }),
+  photo: Joi.string().optional().messages({
+    'string.base': 'Photo must be a string (file link)',
+  }),
 });
 
 export const contactPatchSchema = Joi.object({
@@ -41,6 +44,7 @@ export const contactPatchSchema = Joi.object({
   email: Joi.string(),
   isFavourite: Joi.boolean(),
   contactType: Joi.string().valid(...contactType),
+  photo: Joi.string().optional(),
 });
 
 export const requestResetEmailSchema = Joi.object({

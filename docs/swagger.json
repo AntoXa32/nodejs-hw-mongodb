@@ -14,7 +14,7 @@
       "url": "http://localhost:3000"
     },
     {
-      "url": "https://nodejs-hw-mongodb-7-t2ky.onrender.com"
+      "url": "https://nodejs-hw-mongodb-7-swagger.onrender.com"
     }
   ],
   "tags": [
@@ -185,7 +185,7 @@
                   },
                   "phoneNumber": {
                     "description": "Contact's phoneNumber",
-                    "type": "number",
+                    "type": "string",
                     "example": 380000000009
                   },
                   "email": {
@@ -193,7 +193,7 @@
                     "type": "string",
                     "example": "arcantos.s@gmail.com"
                   },
-                  "isFavorite": {
+                  "isFavourite": {
                     "description": "Contact's isFavorite",
                     "type": "boolean",
                     "example": true
