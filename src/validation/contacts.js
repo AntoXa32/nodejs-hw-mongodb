@@ -44,7 +44,9 @@ export const contactPatchSchema = Joi.object({
   email: Joi.string(),
   isFavourite: Joi.boolean(),
   contactType: Joi.string().valid(...contactType),
-  photo: Joi.string().optional(),
+  photo: Joi.string().allow(null, '').optional().messages({
+    'string.base': 'Photo must be a string (file link)',
+  }),
 });
 
 export const requestResetEmailSchema = Joi.object({

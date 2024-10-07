@@ -336,7 +336,6 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -355,7 +354,7 @@
                     "type": "string",
                     "example": "arcantos.s@gmail.com"
                   },
-                  "isFavorite": {
+                  "isFavourite": {
                     "description": "Contact's isFavorite",
                     "type": "boolean",
                     "example": true
